@@ -2,7 +2,7 @@
 from random import randint
 
 # re-import our game variables
-from gameComponents import gameVars
+from gameComponents import gameVars, winLose
 
 # [] => this is an array
 # name = [value1, value2, value3]
@@ -16,24 +16,7 @@ from gameComponents import gameVars
 
 
 #define a win or lose function
-def winorlose(status):
-	#version 1 of function
-	# print("Inside winorlose function; status is: ", status)
-	print("You", status, "! Would you like to play again?")
-	choice = input("Y / N? ")
 
-	if choice == "N" or choice =="n":
-		print("You chose to quit! Better luck next time!")
-		exit()
-	elif choice == "Y" or choice == "y":
-		#reset the player lives and computer lives
-		# and reset player choice to False, so our loop restar
-		gameVars.player_lives = gameVars.total_lives
-		gameVars.computer_lives = gameVars.total_lives
-	else:
-		print("Make a valid choice - Y or N")
-		#this might generate a bug that we need to fix later
-		choice = input("Y / N? ")
 
 # player_choice == False
 while gameVars.player_choice is False:
@@ -91,10 +74,10 @@ while gameVars.player_choice is False:
 			gameVars.computer_lives -= 1
 
 	if gameVars.player_lives == 0:
-		winorlose("lose")
+		winLose.winorlose("lose")
 
 	if gameVars.computer_lives == 0:
-		winorlose("won")
+		winLose.winorlose("won")
 		
 	print("Player lives:", gameVars.player_lives)
 	print("Computer lives:", gameVars.computer_lives)
